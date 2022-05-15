@@ -1,0 +1,32 @@
+{
+  "name": "rhythmind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Inoxia25/rhythMind-EngageProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Inoxia25/rhythMind-EngageProject/issues"
+  },
+  "homepage": "https://github.com/Inoxia25/rhythMind-EngageProject#readme",
+  "dependencies": {
+    "@azure/cognitiveservices-face": "^5.0.0",
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.0",
+    "fs-extra": "^10.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.3",
+    "nodemon": "^2.0.16",
+    "request": "^2.88.2"
+  }
+}
