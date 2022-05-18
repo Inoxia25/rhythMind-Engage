@@ -20,13 +20,16 @@
     "@azure/cognitiveservices-face": "^5.0.0",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
+    "chart.js": "^3.7.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-validator": "^6.14.0",
     "fs-extra": "^10.1.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.3",
     "mongoose": "^6.3.3",
     "nodemon": "^2.0.16",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "socket.io": "^4.5.0"
   }
 }

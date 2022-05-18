@@ -8,12 +8,14 @@ const app=express();
 //returnFaceLandmarks=true&
 //recognitionModel=recognition_03&
 //faceidTimeToLive=60
+/*POST {Endpoint}/face/v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise&recognitionModel=recognition_01&returnRecognitionModel=True&detectionModel=detection_01
+Ocp-Apim-Subscription-Key: {API key}*/
+
 app.get('/', async(req,res)=>{
     const imageData=await fs.readFile(`./images/Nandini-portfolio.jpeg`);
-const response= await axios.post(`${AZURE_ENDPOINT}/face/v1.0/detect?
-
-returnFaceAttributes=emotion
-`,
+const response= await axios.post(`${AZURE_ENDPOINT}/face/v1.0/detect?overload=stream&
+returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise&
+recognitionModel=recognition_01&returnRecognitionModel=True&detectionModel=detection_01`,
 imageData,
 {
     headers:{
@@ -21,7 +23,8 @@ imageData,
         "Ocp-Apim-Subscription-Key":AZURE_FACE_KEY_1
     }
 });
-    console.log(JSON.stringify(response.data,null,2));
+    console.log(response.data);
+    console.log(new Date().toISOString());
     res.send('Successfully found out emotion');
 }
 )
