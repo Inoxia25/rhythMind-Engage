@@ -2,6 +2,7 @@ const express=require('express');
 const app=express();
 const path = require('path');
 const http = require('http');
+const ejs = require("ejs");
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
 
@@ -19,7 +20,8 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static("public"));
+app.set('view engine', 'ejs');
 
 const botName = 'Groovy';
 
@@ -83,7 +85,14 @@ io.on('connection', (socket) => {
     });
   });
   
-
-
+  app.get('/home', (req,res)=>{
+    res.render('home');
+  });
+app.get('/musicplayer',(req,res)=>{
+    res.render('musicplayer');
+})
+app.get('/songs',(req,res)=>{
+    res.render('songs');
+})
 const PORT= process.env.PORT || 3000;
 app.listen(PORT, ()=> console.log(`Server started on port ${PORT}`));
