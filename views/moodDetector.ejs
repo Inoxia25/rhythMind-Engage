@@ -1,0 +1,44 @@
+<%- include ("./partials/navbar.ejs") %>
+<div class="mood_detector w-75  mx-auto mt-5 p-2 mb-5">
+    <div class="video_player  mx-auto d-flex flex-wrap justify-content-around">
+ 
+   <!-- Video -->
+   <label for"video_camera">Video tag</label><br />
+   <video id="video_camera">Video stream not available.</video><br />
+   
+   <!-- Canvas -->
+   <label for"canvas">Canvas:</label><br />
+   <canvas id="canvas"></canvas><br />
+    </div>
+      <div class="d-flex flex-wrap justify-content-around mt-3">
+          <button type="span" id="take_picture_button"  class="btn btn-colory btn-lg m-1 rounded" disabled><span class="font-weight-bold">Take picture</span></button>
+          <button type="span" id="detect_mood_button" class="btn btn-colorg btn-lg m-1 rounded" disabled><span class="font-weight-bold" id="detected_mood"> Detect Mood </span></button>
+          <button type="span" id="start_camera_button" class="btn btn-colorp btn-lg m-1 rounded"><span class="font-weight-bold" >Start Camera</span></button>
+      </div>
+    </div>
+  </div>
+ 
+    <div id="camera_upload">
+     
+      <!-- Buttons -->
+     <!--  <button  type="text">Start Camera</button> 
+      <button  type="text" >Take Picture</button>
+     <button id="clear_picture_button" type="text" disabled>Clear Picture</button>
+     <button id="upload_button" type="text" disabled>Upload Picture</button>
+      -->
+      <br />
+
+      
+      
+
+      <!-- Cloudinary Photo 
+      <label for"cloudinary_photo">Image from Cloudinary:</label><br />
+      <img id="cloudinary_photo"><br />
+      -->
+    </div>
+     <!-- <h2>Upload Response:</h2>
+    <textarea id="upload_response" readonly></textarea>   -->
+  <script src="js/webcam.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+<scr
