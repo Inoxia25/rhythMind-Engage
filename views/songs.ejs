@@ -2,8 +2,11 @@
 <div class="h-100">
     <div class="music w-50  text-center align-items-center d-flex mx-auto"><span class="font-weight-bold">Play on Spotify?</span></div>
     <div class="playlist mt-2 w-75 px-3 pt-1 pb-4 mx-auto h-100">
-      <div class="music mb-3 mt-1 rounded text-center align-items-center d-flex mx-auto px-3"><span class="font-weight-bold">Mood:Happy</span></div>
-      <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1E35YFsIFC0Cw0?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <div class="music mb-3 mt-1 rounded text-center align-items-center d-flex mx-auto px-3"><span class="font-weight-bold">Mood:<%=emotion%></span></div>
+      <iframe src="https://open.spotify.com/embed/track/<%=songs.s1%>?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe src="https://open.spotify.com/embed/track/<%=songs.s2%>?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe src="https://open.spotify.com/embed/playlist/<%=songs.p1%>?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe src="https://open.spotify.com/embed/playlist/<%=songs.p2%>?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
     </div>
     </body>

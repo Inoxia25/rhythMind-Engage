@@ -1,4 +1,3 @@
-
 //require("dotenv").config();
 
 //const { response } = require("express");
@@ -10,42 +9,40 @@ const upload_preset = CLOUDINARY_UPLOAD_PRESET;*/
 const cloud_name = "diclfnvsi";
 const upload_preset = "fucxfen0";
 
-const AZURE_FACE_KEY_1="6b86f5d59db74be18cdc9bf9a454024f";
+const AZURE_FACE_KEY_1 = "6b86f5d59db74be18cdc9bf9a454024f";
 
- //cloud_name = document.getElementById("cloud_name");
-  //upload_preset = document.getElementById("upload_preset");
-  const video_camera = document.getElementById("video_camera");
-  const canvas = document.getElementById("canvas");
-   //cloudinary_photo = document.getElementById("cloudinary_photo");
-   const start_camera_button = document.getElementById("start_camera_button");
-   const take_picture_button = document.getElementById("take_picture_button");
-   const detect_mood_button = document.getElementById("detect_mood_button");
-   //clear_picture_button = document.getElementById("clear_picture_button");
-   //upload_button = document.getElementById("upload_button");
-   //upload_response = document.getElementById("upload_response");
- 
-    start_camera_button.addEventListener("click", startCamera);
-   take_picture_button.addEventListener("click", takePhoto);
-    detect_mood_button.addEventListener("click",detectMood);
-  
+//cloud_name = document.getElementById("cloud_name");
+//upload_preset = document.getElementById("upload_preset");
+const video_camera = document.getElementById("video_camera");
+const canvas = document.getElementById("canvas");
+//cloudinary_photo = document.getElementById("cloudinary_photo");
+const start_camera_button = document.getElementById("start_camera_button");
+const take_picture_button = document.getElementById("take_picture_button");
+const detect_mood_button = document.getElementById("detect_mood_button");
+//clear_picture_button = document.getElementById("clear_picture_button");
+//upload_button = document.getElementById("upload_button");
+//upload_response = document.getElementById("upload_response");
+
+start_camera_button.addEventListener("click", startCamera);
+take_picture_button.addEventListener("click", takePhoto);
+detect_mood_button.addEventListener("click", detectMood);
 
 let image_url;
 let streaming = false;
-  let width = 320;
- let  height = 0;
+let width = 320;
+let height = 0;
 
-//function init() 
+//function init()
 
-  //console.log("init");
- 
-  //clear_picture_button.addEventListener("click", clearPhotos);
-  //upload_button.addEventListener("click", uploadPhoto);
-  //startCamera();
+//console.log("init");
 
-  //variables to store emotion detected
- let max_emotion=0;
-    let detected_emotion;
+//clear_picture_button.addEventListener("click", clearPhotos);
+//upload_button.addEventListener("click", uploadPhoto);
+//startCamera();
 
+//variables to store emotion detected
+let max_emotion = 0;
+let detected_emotion;
 
 function startCamera(ev) {
   console.log("startCamera");
@@ -101,7 +98,7 @@ function clearPhotos() {
 
 function takePhoto() {
   detect_mood_button.disabled = false;
-  document.getElementById('detected_mood').innerHTML="Detect Mood";
+  document.getElementById("detected_mood").innerHTML = "Detect Mood";
   var context = canvas.getContext("2d");
   if (width && height) {
     canvas.width = width;
@@ -140,14 +137,12 @@ function uploadPhoto() {
     );
 
     xhr.onload = function () {
-
       //extracting our cloudinary url from the response after posting photo to cloudinary
       let response = JSON.parse(this.response);
-      image_url=response.secure_url;
+      image_url = response.secure_url;
       console.log(image_url);
       //cloudinary_photo.setAttribute("src", response.secure_url);
       //upload_response.value += this.responseText + "\n";
-
     };
     //console.log(image_url);
     xhr.send(formdata);
@@ -155,44 +150,43 @@ function uploadPhoto() {
 }
 
 //function to detect mood from api
-async function detectMood(){
-
-    const image={
-        url:image_url
-    };
-const response= await axios.post("https://nandini.cognitiveservices.azure.com/face/v1.0/detect?overload=stream&returnFaceAttributes=emotion&recognitionModel=recognition_01&returnRecognitionModel=True&detectionModel=detection_01",
-image,
-{
-    headers:{
-        "Content-Type":"application/json",
-        "Ocp-Apim-Subscription-Key":AZURE_FACE_KEY_1
+async function detectMood() {
+  const image = {
+    url: image_url,
+  };
+  const response = await axios.post(
+    "https://nandini.cognitiveservices.azure.com/face/v1.0/detect?overload=stream&returnFaceAttributes=emotion&recognitionModel=recognition_01&returnRecognitionModel=True&detectionModel=detection_01",
+    image,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key": AZURE_FACE_KEY_1,
+      },
     }
-});
-    console.log(response.data[0].faceAttributes.emotion);
-    emotion=response.data[0].faceAttributes.emotion;
-    
-   find_max_emotion(emotion.anger,"anger");
-   find_max_emotion(emotion.contempt,"contempt");
-   find_max_emotion(emotion.disgust,"disgust");
-   find_max_emotion(emotion.fear,"fear");
-   find_max_emotion(emotion.happiness,"happy");
-   find_max_emotion(emotion.neutral,"neutral");
-   find_max_emotion(emotion.sadness,"sadness");
-   find_max_emotion(emotion.surprise,"surprise");
-    
+  );
+  console.log(response.data[0].faceAttributes.emotion);
+  emotion = response.data[0].faceAttributes.emotion;
 
-    console.log(detected_emotion);
-    document.getElementById('detected_mood').innerHTML="Mood:"+detected_emotion;
-   //window.location.replace(`http://localhost:4000/detectedmood/${detected_emotion}`);
-   window.location.href = `http://localhost:3000/detectedmood/${detected_emotion}`;
+  find_max_emotion(emotion.anger, "anger");
+  find_max_emotion(emotion.contempt, "contempt");
+  find_max_emotion(emotion.disgust, "disgust");
+  find_max_emotion(emotion.fear, "fear");
+  find_max_emotion(emotion.happiness, "happy");
+  find_max_emotion(emotion.neutral, "neutral");
+  find_max_emotion(emotion.sadness, "sadness");
+  find_max_emotion(emotion.surprise, "surprise");
 
+  console.log(detected_emotion);
+  document.getElementById("detected_mood").innerHTML =
+    "Mood:" + detected_emotion;
+  //window.location.replace(`http://localhost:4000/detectedmood/${detected_emotion}`);
+  window.location.href = `http://localhost:3000/detectedmood/${detected_emotion}`;
 }
-function find_max_emotion(value_found,emotion){
-if(value_found>max_emotion)
-{
-    max_emotion=value_found;
-    detected_emotion=emotion;
-}
+function find_max_emotion(value_found, emotion) {
+  if (value_found > max_emotion) {
+    max_emotion = value_found;
+    detected_emotion = emotion;
+  }
 }
 
 window.onload = init();

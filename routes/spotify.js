@@ -10,9 +10,11 @@ var access_token;
 var s1, s2, a1, a2, p1, p2;
 router.use(cookieParser());
 
-const client_id=process.env.SPOTIFY_CLIENT_ID;
-const client_secret=process.env.SPOTIFY_CLIENT_SECRET;
+const client_id="6836a36561414b15a1757f7e450ae6dd";
+const client_secret="839cf1ef88c048f3a87200c098ed6791";
 const redirect_uri ="http://localhost:3000/auth/spotify/callback";
+
+let emotion;
 
 //function to generate random string to be used in authentication
 var generateRandomString = function (length) {
@@ -28,7 +30,8 @@ var generateRandomString = function (length) {
 
 
 var stateKey = "spotify_auth_state";
-router.get("/auth/spotify", function (req, res) {
+router.get("/emotion/:mood/auth/spotify", function (req, res) {
+    emotion=req.params.mood;
   var state = generateRandomString(16);
   res.cookie(stateKey, state)
   // your application requests authorization
@@ -85,7 +88,10 @@ router.get("/auth/spotify/callback", function (req, res) {
         // use the access token to access the Spotify Web API
         request.get(options, function (error, response, body) {
           songs = {};
-          res.render("songs.ejs", { name: body.display_name, songs: songs });
+          const name=body.display_name;
+          console.log(body.display_name);
+          console.log(emotion);
+          res.redirect(`/spotify/${name}/${emotion}`);
         });
       } else {
         res.redirect(
@@ -109,7 +115,7 @@ router.get("/spotify/:name/:emotion", function (req, res) {
 	  url:
 		"https://api.spotify.com/v1/search?q=" +
 		emotion +
-		"k&type=playlist&limit=2",
+		"&type=playlist&limit=2",
 	  headers: { Authorization: "Bearer " + access_token },
 	  json: true,
 	};
@@ -122,7 +128,7 @@ router.get("/spotify/:name/:emotion", function (req, res) {
 		url:
 		  "https://api.spotify.com/v1/search?q=" +
 		  emotion +
-		  "k&type=track&limit=2",
+		  "&type=track&limit=2",
 		headers: { Authorization: "Bearer " + access_token },
 		json: true,
 	  };
@@ -134,7 +140,7 @@ router.get("/spotify/:name/:emotion", function (req, res) {
 		  url:
 			"https://api.spotify.com/v1/search?q=" +
 			emotion +
-			"k&type=album&limit=2",
+			"&type=album&limit=2",
 		  headers: { Authorization: "Bearer " + access_token },
 		  json: true,
 		};
@@ -150,7 +156,7 @@ router.get("/spotify/:name/:emotion", function (req, res) {
 			a2: a2,
 		  };
           console.log(songs);
-		  res.render("songs.ejs", { name: name, songs: songs });
+		  res.render("songs.ejs", { name: name, emotion:emotion, songs: songs });
 		});
 	  });
 	});
