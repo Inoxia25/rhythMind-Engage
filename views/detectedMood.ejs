@@ -1,7 +1,7 @@
 <%- include ("./partials/navbar.ejs") %>
 <div class="h-100">
     <div class="music w-50  text-center align-items-center d-flex mx-auto"><span class="font-weight-bold">Mood detected: <%=mood%></span></div>
-    <div class="music w-50  text-center align-items-center d-flex mx-auto"><span class="font-weight-bold">Enter Chat Room</span></div>
+    <a href="https://rhythm-mind.herokuapp.com/chat.html?username=Nandini&room=<%=mood%>"><div class="music w-50  text-center align-items-center d-flex mx-auto"><span class="font-weight-bold">Enter Chat Room</span></div></a>
     <a href="/emotion/<%=mood%>/auth/spotify"> <div class="music w-50  text-center align-items-center d-flex mx-auto" span class="font-weight-bold">Open Music Player</span></div> </a>
     </div>
     </body>
