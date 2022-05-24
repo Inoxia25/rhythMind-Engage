@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express=require('express');
 const axios=require("axios");
-const fs=require("fs-extra");
-const {AZURE_ENDPOINT, AZURE_FACE_KEY_1}=process.env;
+//const fs=require("fs-extra");
+const AZURE_FACE_KEY_1=process.env;
 const app=express();
 
 //returnFaceLandmarks=true&
