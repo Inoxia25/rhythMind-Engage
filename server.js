@@ -3,10 +3,26 @@ const app = express();
 const path = require("path");
 const http = require("http");
 const ejs = require("ejs");
+var mongoose = require("mongoose");
 const socketio = require("socket.io");
 const formatMessage = require("./utils/messages");
 
 const spotifyRoutes = require("./routes/spotify");
+
+//MONGOOSE CONNECT
+const mongo_password="sne123";
+
+mongoose.connect(
+    `mongodb://Nandini:${mongo_password}@ac-mtvzg9w-shard-00-00.mjodpgy.mongodb.net:27017,ac-mtvzg9w-shard-00-01.mjodpgy.mongodb.net:27017,ac-mtvzg9w-shard-00-02.mjodpgy.mongodb.net:27017/?ssl=true&replicaSet=atlas-2jwzki-shard-0&authSource=admin&retryWrites=true&w=majority`,
+    { useNewUrlParser: true, useUnifiedTopology: true } 
+  );
+
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+    //res.locals.error = req.flash("error");
+   // res.locals.success = req.flash("success");
+    next();
+  });
 
 //app.use(express.static(__dirname + '/public'));
 const {
@@ -99,7 +115,7 @@ app.get("/songs", (req, res) => {
 });
 app.get("/detectedmood/:mood", (req, res) => {
   console.log(req.params.mood);
-  res.render("detectedMood", { mood: req.params.mood });
+  res.render("detectedMood", { name:req.user.name, mood: req.params.mood });
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

@@ -29,8 +29,13 @@
     <div class="collapse navbar-collapse navbar-nav float-right" id="navbarCollapse">
          <div class="navbar-nav ml-auto">
           <a href="/home" class="middle nav-item  nav-link navbar_headings ml-5">Home</a>
+           <% if(currentUser) {%>
           <a href="/mooddetector" class="middle nav-item nav-link navbar_headings ml-5">Mood Detector</a>
-         
+          <a  class="middle nav-item nav-link navbar_headings ml-5">Logged in as <%=currentUser.name%></a>
+          <a href="/logout" class="middle nav-item nav-link navbar_headings ml-5">Logout</a>
+          <% } else { %>
+            <a href="/auth/spotify" class="middle nav-item nav-link navbar_headings ml-5">Login with Spotify</a>
+            <% } %>
         </div> 
     </div>
     </nav>
