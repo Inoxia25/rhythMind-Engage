@@ -149,6 +149,24 @@ function uploadPhoto() {
   });
 }
 
+/*var form = document.querySelector('form');
+form.addEventListener("submit", submit_emotions);
+
+async function submit_emotions(event) {
+
+  event.preventDefault(); // Stop normal submission of the form
+
+ const x = document.getElementById("anger");
+ const y = document.getElementById("contempt");
+ const z = document.getElementById("disguise");
+ await detectMood();
+ x.value=emotion.anger;
+ y.value=emotion.contempt;
+ z.value=emotion.disgust;
+ form.submit(); // Resubmit the form when the data is available
+ //window.location.href = ` http://localhost:3000/detectedmood/${detected_emotion}`;
+}*/
+
 //function to detect mood from api
 async function detectMood() {
   const image = {
@@ -164,7 +182,7 @@ async function detectMood() {
       },
     }
   );
-  console.log(response.data[0].faceAttributes.emotion);
+
   emotion = response.data[0].faceAttributes.emotion;
 
   find_max_emotion(emotion.anger, "anger");
@@ -176,10 +194,21 @@ async function detectMood() {
   find_max_emotion(emotion.sadness, "sadness");
   find_max_emotion(emotion.surprise, "surprise");
 
+  //sending the emotions to server side to save in the database
+ /* var xhttp = new XMLHttpRequest();
+ xhttp.open("POST", "/postemotion", false);
+ //xhttp.setRequestHeader("Content-type", "application/json");
+ xhttp.send(JSON.stringify(emotion));
+*/
   console.log(detected_emotion);
   document.getElementById("detected_mood").innerHTML =
     "Mood:" + detected_emotion;
 
+    $.post("/postemotion",
+    emotion,
+    function (data, status) {
+       console.log(data);
+    });
   //window.location.href = `https://rhyth-mind.herokuapp.com/detectedmood/${detected_emotion}`;
  
   window.location.href = ` http://localhost:3000/detectedmood/${detected_emotion}`;

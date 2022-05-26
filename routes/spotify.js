@@ -8,6 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 const  SpotifyStrategy = require('passport-spotify').Strategy;
 const User=require('../model/user.js');
+
 //require('./passport')
 
 // Passport session setup.

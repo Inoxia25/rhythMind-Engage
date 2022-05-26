@@ -5,7 +5,7 @@ const moodSchema = mongoose.Schema({
     contempt:Number,
    disgust :Number,
     fear:Number,
-    happy:Number,
+    happiness:Number,
     neutral:Number,
     sadness:Number,
     surprise:Number,
