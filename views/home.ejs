@@ -1,6 +1,6 @@
 <%- include ("./partials/navbar.ejs") %>
 <div class="d-flex text-center align-items-center flex-wrap px-2">
-    <div class="get-started d-flex flex-wrap w-50">
+    <div class="get-started d-flex flex-wrap w-50 darkmode-ignore">
        <p class="ml-5 text-left">Your work companion to help you get the best music hassle free.</p> 
         <div class="text-left">
           <a href="/auth/spotify"><button type="span" class="btn btn-color btn-lg ml-5 "><span class="font-weight-bold">Get Started</span></button></a>
@@ -14,6 +14,22 @@
     
     
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+  <!--<script>
+    const options = {
+  
+  label: '🌓', // default: ''
+  autoMatchOsTheme: true // default: true
+}
+const darkmode =  new Darkmode();
+darkmode.toggle();
+console.log(darkmode.isActivated()) 
+
+    function addDarkmodeWidget() {
+      new Darkmode().showWidget();
+    }
+    window.addEventListener('load', addDarkmodeWidget);
+  </script>-->
   
 </body>
 </html>

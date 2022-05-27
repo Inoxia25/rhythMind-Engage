@@ -31,7 +31,7 @@ a.middle:hover:before {
     display: inline;
 }
 .navbar_headings{
-    background-color:#151515;
+    /*background-color:#151515;*/
      color: #24C28A !important;
 font-family: Poppins;
 font-size: 16px;
@@ -46,7 +46,7 @@ transition: 0.5s;
 .logo{
     font-size: 20px;
     font-weight: 600;
-    background-color:#151515;
+   /* background-color:#151515;*/
      color: #24C28A;
 font-family: Poppins;
 border:none;
@@ -69,7 +69,7 @@ justify-content: center;
     transition: 0.5s;
 }
 .get-started{
-    color: rgba(36, 194, 138, 1);
+    color: rgba(36, 194, 138, 1) !important;
     width:60%;
     font-family: Poppins;
 font-size: 2.5rem;
@@ -94,12 +94,12 @@ margin-top:15%;
 
 }
 .btn-color{
-    background-color: #24C28A;
+    background-color: #24C28A !important;
 }
 .btn-color:hover{
-    background-color: #151515;
-    color:#24C28A;
-    border: 2px solid #24C28A;
+    background-color: #151515 !important;
+    color:#24C28A !important;
+    border: 2px solid #24C28A !important;
     transition: 0.5s;
     /* border-radius: 50px; */
 }

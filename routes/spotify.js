@@ -8,6 +8,8 @@ const session = require('express-session');
 const passport = require('passport');
 const  SpotifyStrategy = require('passport-spotify').Strategy;
 const User=require('../model/user.js');
+const Song= require('../model/song.js');
+const Playlist= require('../model/playlist.js');
 
 //require('./passport')
 
@@ -84,7 +86,7 @@ const client_secret="839cf1ef88c048f3a87200c098ed6791";
 const redirect_uri ="https://rhyth-mind.herokuapp.com/auth/spotify/callback";
 
 let emotion;
-
+let songss;
 //function to generate random string to be used in authentication
 var generateRandomString = function (length) {
   var text = "";
@@ -198,7 +200,7 @@ router.get('/logout', function (req, res) {
 // send id of spotify recommendations
 router.get("/spotify/:name/:emotion", function (req, res) {
 	var name = req.params.name;
-	var emotion = req.params.emotion;
+    emotion = req.params.emotion;
     console.log(req.user);
     access_token=req.user.access_token;
 	var options = {
@@ -234,7 +236,7 @@ router.get("/spotify/:name/:emotion", function (req, res) {
 		  headers: { Authorization: "Bearer " + access_token },
 		  json: true,
         };*/
-          var songs = {
+           songs = {
 			s1: s1,
 			s2: s2,
 			p1: p1,
@@ -261,5 +263,62 @@ router.get("/spotify/:name/:emotion", function (req, res) {
 	  });
 	});
   });
+  router.post('/addLikedSongs/:s', async function (req,res){ //post request to add liked song to users list
+    let song=req.params.s;
+    let song_id;
+    if(song===s1)
+    song_id=songs.s1;
+    else
+    song_id=songs.s2;
+    const likedSong = await new Song({ emotion, song_id}).save();
+    const existingUser = await User.findById(req.user._id);
+    existingUser.liked_songs.push(likedSong);
+    existingUser.save();
+  });
+  router.delete('/deleteLikedSong/:s', async function (req,res){ //delete request to delete liked song from users list
+    let song=req.params.s;
+    let song_id;
+    if(song===s1)
+    song_id=songs.s1;
+    else
+    song_id=songs.s2;
+    Song.findOneAndDelete({song_id: song_id }, function (err, song) {
+        if (err){
+            console.log(err)
+        }
+        else{
+            console.log(song);
+        }
+    });
+  })
+  router.post('/addLikedPlaylist/:p', async function (req,res){ //post request to add liked playlist to users list
+    let playlist=req.params.p;
+    let playlist_id;
+    if(playlist===s1)
+    playlist_id=songs.p1;
+    else
+    playlist_id=songs.p2;
+    const likedPlaylist = await new Playlist({ emotion, playlist_id}).save();
+    const existingUser = await User.findById(req.user._id);
+    existingUser.liked_playlists.push(likedPlaylist);
+    existingUser.save();
+  });
+  router.delete('/deleteLikedPlaylist/:p', async function (req,res){ //delete request to delete liked playlist from users list
+    let playlist=req.params.p;
+    let playlist_id;
+    if(playlist===s1)
+    playlist_id=songs.p1;
+    else
+    playlist_id=songs.p2;
+    Playlist.findOneAndDelete({playlist_id: playlist_id }, function (err, playlist) {
+        if (err){
+            console.log(err)
+        }
+        else{
+            ;
+        }
+    });
+  })
+  
 
 module.exports=router;

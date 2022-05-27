@@ -195,22 +195,20 @@ async function detectMood() {
   find_max_emotion(emotion.surprise, "surprise");
 
   //sending the emotions to server side to save in the database
- /* var xhttp = new XMLHttpRequest();
- xhttp.open("POST", "/postemotion", false);
- //xhttp.setRequestHeader("Content-type", "application/json");
- xhttp.send(JSON.stringify(emotion));
-*/
+  /* var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "/postemotion", false);
+  //xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(emotion));
+ */
   console.log(detected_emotion);
   document.getElementById("detected_mood").innerHTML =
     "Mood:" + detected_emotion;
 
-    $.post("/postemotion",
-    emotion,
-    function (data, status) {
-       console.log(data);
-    });
+  $.post("/postemotion", emotion, function (data, status) {
+    console.log(data);
+  });
   //window.location.href = `https://rhyth-mind.herokuapp.com/detectedmood/${detected_emotion}`;
- 
+
   window.location.href = ` http://localhost:3000/detectedmood/${detected_emotion}`;
 }
 function find_max_emotion(value_found, emotion) {

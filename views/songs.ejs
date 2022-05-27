@@ -1,12 +1,103 @@
 <%- include ("./partials/navbar.ejs") %>
-<div class="h-100">
-    <div class="music w-50  text-center align-items-center d-flex mx-auto"><span class="font-weight-bold">Play on Spotify?</span></div>
-    <div class="playlist mt-2 w-75 px-3 pt-1 pb-4 mx-auto h-100">
-      <div class="music mb-3 mt-1 rounded text-center align-items-center d-flex mx-auto px-3"><span class="font-weight-bold">Mood:<%=emotion%></span></div>
-      <iframe src="https://open.spotify.com/embed/track/<%=songs.s1%>?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      <iframe src="https://open.spotify.com/embed/track/<%=songs.s2%>?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      <iframe src="https://open.spotify.com/embed/playlist/<%=songs.p1%>?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      <iframe src="https://open.spotify.com/embed/playlist/<%=songs.p2%>?theme=0"  border-radius="29px" width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <div class="h-100">
+        <div class="music w-50  text-center align-items-center d-flex mx-auto"><span class="font-weight-bold">Play on
+                Spotify?</span></div>
+        <div class="playlist mt-2 w-75 px-3 pt-1 pb-4 mx-auto h-100">
+            <div class="music mb-3 mt-1 rounded text-center align-items-center d-flex mx-auto px-3"><span
+                    class="font-weight-bold">Mood:<%=emotion%></span></div>
+            <iframe src="https://open.spotify.com/embed/track/<%=songs.s1%>?theme=0" border-radius="29px" width="100%"
+                height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <div class="mx-auto mb-5" style="text-align: center">
+                <h4 class="text-success" > Add to liked songs  <a> <i class="bi bi-heart text-success s1" id="song1"
+                    style="font-size: 2rem" aria-label="Like button"></i> </a>  </h4>
+            </div>
+            <iframe src="https://open.spotify.com/embed/track/<%=songs.s2%>?theme=0" border-radius="29px" width="100%"
+                height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <div class="mx-auto mb-5" style="text-align: center">
+                    <h4 class="text-success" > Add to liked songs  <a> <i class="bi bi-heart text-success s2" id="song2"
+                        style="font-size: 2rem" aria-label="Like button"></i> </a>  </h4>
+                </div>
+            <iframe src="https://open.spotify.com/embed/playlist/<%=songs.p1%>?theme=0" border-radius="29px"
+                width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <div class="mx-auto mb-5" style="text-align: center">
+                    <h4 class="text-success" > Add to liked playlists  <a> <i class="bi bi-heart text-success p1" id="playlist1"
+                        style="font-size: 2rem" aria-label="Like button"></i> </a>  </h4>
+                </div>
+            <iframe src="https://open.spotify.com/embed/playlist/<%=songs.p2%>?theme=0" border-radius="29px"
+                width="100%" height="500" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <div class="mx-auto mb-5" style="text-align: center">
+                    <h4 class="text-success" > Add to liked playlists  <a> <i class="bi bi-heart text-success p2" id="playlist2"
+                        style="font-size: 2rem" aria-label="Like button"></i> </a>  </h4>
+                </div>
+        </div>
     </div>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+    <script>
+        //jquery function to create toggle effect on heart
+        $("i").click(function () {
+            $(this).toggleClass('bi bi-heart-fill text-success');
+            $(this).toggleClass('bi bi-heart text-success');
+        });
+        $("i").click(function () {
+           
+        if($(this).hasClass("bi-heart")){
+            if($(this).is("#song1")){
+                
+                $.post('/addLikedSongs/s1', function (response) {
+                    ;
+                });
+            };
+            if($(this).is("#song2")){
+              
+                $.post('/addLikedSongs/s2', function (response) {
+                    ;
+                });
+            };
+            if($(this).is("#playlist1")){
+              
+                $.post('/addLikedPlaylist/p1', function (response) {
+                    ;
+                });
+            };
+            if($(this).is("#playlist2")){
+               
+                $.post('/addLikedPlaylist/p2', function (response) {
+                    ;
+                });
+            };
+        };
+        if($(this).hasClass("bi-heart-fill")){
+            if($(this).is("#song1")){
+                
+                $.delete('/deleteLikedSong/s1', function (response) {
+                    ;
+                });
+            };
+            if($(this).is("#song2")){
+              
+                $.delete('/deleteLikedSong/s2', function (response) {
+                    ;
+                });
+            };
+            if($(this).is("#playlist1")){
+              
+                $.delete('/deleteLikedPlaylist/p1', function (response) {
+                    ;
+                });
+            };
+            if($(this).is("#playlist2")){
+               
+                $.delete('/deleteLikedPlaylist/p2', function (response) {
+                    ;
+                });
+            };
+        };
+
+
+           
+
+        })
+    </script>
     </body>
