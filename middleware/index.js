@@ -3,7 +3,8 @@ const  middlewareObj={};
     if (req.user) {
         next();
     } else {
-        res.redirect('/auth/spotify');
+        alert('You need to be logged in to use this feature!');
+        res.redirect('/home');
     }
 }
 module.exports=middlewareObj;
