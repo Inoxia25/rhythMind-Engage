@@ -128,7 +128,8 @@ app.get("/detectedmood/:mood", middleware.isAuthenticated, (req, res) => {
 
 app.post("/postemotion", middleware.isAuthenticated, async (req, res) => {
   //saving the detected emotion to database to keep track of moods for mood tracker
-  const date = new Date().toISOString();
+  //const date = new Date().toISOString();
+  const date= moment().utcOffset("+05:30").format();
   const emotion = req.body;
   const emotionsDetected = await new Emotion({ emotion, date }).save();
   const existingUser = await User.findById(req.user._id);
