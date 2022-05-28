@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -14,6 +15,7 @@ const Emotion = require("./model/emotion");
 const User = require("./model/user");
 
 const spotifyRoutes = require("./routes/spotify");
+const secretkeyRoutes= require("./routes/secretkeys");
 const middleware = require("./middleware"); // importing middleware object
 
 //MONGOOSE CONNECT
@@ -112,6 +114,7 @@ io.on("connection", (socket) => {
 });
 
 app.use("/", spotifyRoutes);
+app.use("/secretkey",secretkeyRoutes);
 
 app.get("/home", (req, res) => {
   res.render("home");

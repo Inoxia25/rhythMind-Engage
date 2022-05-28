@@ -31,9 +31,12 @@ passport.serializeUser(function (user, done) {
   passport.use(
     new SpotifyStrategy(
       {
-        clientID: "6836a36561414b15a1757f7e450ae6dd",
-  clientSecret: "839cf1ef88c048f3a87200c098ed6791",
-   callbackURL: "https://rhyth-mind.herokuapp.com/auth/spotify/callback"
+        //clientID: "6836a36561414b15a1757f7e450ae6dd",
+        clientID: process.env.SPOTIFY_CLIENT_ID,
+  //clientSecret: "839cf1ef88c048f3a87200c098ed6791",
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+  callbackURL: process.env.SPOTIFY_REDIRECT_URI
+   //callbackURL: "https://rhyth-mind.herokuapp.com/auth/spotify/callback"
   //callbackURL: "http://localhost:3000/auth/spotify/callback"
       },
      async function (access_token, refresh_token, expires_in, profile, done) {
