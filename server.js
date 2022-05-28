@@ -164,7 +164,7 @@ app.get("/getEmotions", middleware.isAuthenticated, (req, res) => {
         emotionsObj.surprise = [];
         foundUser.emotions.forEach(function (emotion) {
           //console.log(emotion);
-          const dateTime = moment(emotion.date).format(format);
+          const dateTime = moment(emotion.date).utcOffset("+05:30").format(format);
           emotionsObj.dates.push(dateTime);
           emotionsObj.anger.push(emotion.emotion.anger * 100);
           console.log(emotionsObj.anger); //storing percentage of moods in separate arrays to use in mood tracker
