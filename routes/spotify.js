@@ -33,8 +33,8 @@ passport.serializeUser(function (user, done) {
       {
         clientID: "6836a36561414b15a1757f7e450ae6dd",
   clientSecret: "839cf1ef88c048f3a87200c098ed6791",
-  //  callbackURL: "https://rhyth-mind.herokuapp.com/auth/spotify/callback"
-  callbackURL: "http://localhost:3000/auth/spotify/callback"
+   callbackURL: "https://rhyth-mind.herokuapp.com/auth/spotify/callback"
+  //callbackURL: "http://localhost:3000/auth/spotify/callback"
       },
      async function (access_token, refresh_token, expires_in, profile, done) {
         const spotify_id = profile.id
