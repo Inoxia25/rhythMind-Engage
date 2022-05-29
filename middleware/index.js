@@ -3,8 +3,8 @@ const  middlewareObj={};
     if (req.user) {
         next();
     } else {
-        alert('You need to be logged in to use this feature!');
-        res.redirect('/home');
+        
+        res.render('error.ejs');
     }
 }
 module.exports=middlewareObj;

@@ -153,9 +153,9 @@ async function detectMood() {
   $.post("/postemotion", emotion, function (data, status) {
     console.log(data);
   });
-  window.location.href = `https://rhyth-mind.herokuapp.com/detectedmood/${detected_emotion}`;
+ // window.location.href = `https://rhyth-mind.herokuapp.com/detectedmood/${detected_emotion}`;
 
-  //window.location.href = ` http://localhost:3000/detectedmood/${detected_emotion}`;
+  window.location.href = ` http://localhost:3000/detectedmood/${detected_emotion}`;
 }
 function find_max_emotion(value_found, emotion) {
   if (value_found > max_emotion) {
