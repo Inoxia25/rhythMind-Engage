@@ -16,7 +16,8 @@ Open a terminal and run the following git command:
 `git clone "url you just copied"`
 where "url you just copied" (without the quotation marks) is the url to this repository (your fork of this project). See the previous steps to obtain the url.
 
-Then in terminal run -
+Then in terminal run -  <br/>
 npm i(for installing all dependencies). <br/>
+
 
 Open http://localhost:3000/home to view the app.
