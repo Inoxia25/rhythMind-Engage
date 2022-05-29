@@ -120,7 +120,7 @@ app.get("/home", (req, res) => {
   res.render("home");
 });
 
-app.get("/mooddetector", middleware.isAuthenticated, (req, res) => {
+app.get("/mooddetector",middleware.isAuthenticated, (req, res) => {
   res.render("moodDetector");
 });
 

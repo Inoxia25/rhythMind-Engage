@@ -1,16 +1,21 @@
 <%- include ("./partials/navbar.ejs") %>
+<div class="mx-5 my-5">
+  <h3 style="color:#24C28A">Start the camera, Take a picture and when you are finally happy with your picture, Detect mood to find out your emotion!</h3>
+</div>
+ 
 <div class="mood_detector w-75  mx-auto mt-5 p-2 mb-5">
     <div class="video_player  mx-auto d-flex flex-wrap justify-content-around">
- 
+     
    <!-- Video -->
-   <label for"video_camera">Video tag</label><br />
+   <label for"video_camera"></label><br />
    <video id="video_camera">Video stream not available.</video><br />
    
    <!-- Canvas -->
-   <label for"canvas">Canvas:</label><br />
+   <label for"canvas"></label><br />
    <canvas id="canvas"></canvas><br />
     </div>
       <div class="d-flex flex-wrap justify-content-around mt-3">
+
           <button type="span" id="start_camera_button" class="btn btn-colorp btn-lg m-1 rounded"><span class="font-weight-bold" >Start Camera</span></button>
           <button type="span" id="take_picture_button"  class="btn btn-colory btn-lg m-1 rounded" disabled><span class="font-weight-bold">Take picture</span></button>
          <!-- <form action="/" method="POST">
@@ -26,7 +31,10 @@
       </div>
     </div>
   </div>
- 
+  
+  <div class="mx-5 my-5 text-center">
+    <h3 style="color:#24C28A">The mood detected is your most prominent mood. So what are u waiting for? Start Emofying!</h3>
+  </div>
     <div id="camera_upload">
      
       <!-- Buttons -->
@@ -45,6 +53,7 @@
       <img id="cloudinary_photo"><br />
       -->
     </div>
+    
      <!-- <h2>Upload Response:</h2>
     <textarea id="upload_response" readonly></textarea>   -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
