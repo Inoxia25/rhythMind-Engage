@@ -1,5 +1,8 @@
 # rhythMind
 
+# Deployed link:
+The deployed link can be found at : https://rhyth-mind.herokuapp.com/home
+
 # How to run the app
 - If you don't have git on your machine, [install](https://docs.github.com/en/github/getting-started-with-github/set-up-git) it.
 
